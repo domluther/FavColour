@@ -225,9 +225,15 @@ async function handleSubmit(e) {
       setNotification(errorMsg);
     }
   } else {
-    const errorMsg = `${colour} is not a valid HTML color name.`;
-    console.error(errorMsg);
-    setNotification(errorMsg);
+    if (colour === '') {
+      const errorMsg = `Please pick a colour before adding.`;
+      console.error(errorMsg);
+      setNotification(errorMsg);
+    } else {
+      const errorMsg = `${colour} is not a valid HTML color name.`;
+      console.error(errorMsg);
+      setNotification(errorMsg);
+    }
   }
 }
 
