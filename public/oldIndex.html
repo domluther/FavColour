@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Colour voting API</title>
+  </head>
+  <body>
+    <main>
+      <h1>What's your favourite colour?</h1>
+      <section class="results">
+        <h2>Colours</h2>
+        <ol class="colourList"></ol>
+      </section>
+      <section class="interact">
+        <h2>Submit a new colour</h2>
+        <form id="colourForm" action="/api/colours/" method="POST">
+          <input
+            id="colourInput"
+            list="colourNames"
+            class="colourInput"
+            name="colour"
+            type="text"
+            placeholder="Pick a colour"
+            required
+          />
+          <datalist id="colourNames">
+            <option value="aliceblue"></option>
+            <option value="antiquewhite"></option>
+            <option value="aqua"></option>
+            <option value="aquamarine"></option>
+            <option value="azure"></option>
+            <option value="beige"></option>
+            <option value="bisque"></option>
+            <option value="black"></option>
+            <option value="blanchedalmond"></option>
+            <option value="blue"></option>
+            <option value="blueviolet"></option>
+            <option value="brown"></option>
+            <option value="burlywood"></option>
+            <option value="cadetblue"></option>
+            <option value="chartreuse"></option>
+            <option value="chocolate"></option>
+            <option value="coral"></option>
+            <option value="cornflowerblue"></option>
+            <option value="cornsilk"></option>
+            <option value="crimson"></option>
+            <option value="cyan"></option>
+            <option value="darkblue"></option>
+            <option value="darkcyan"></option>
+            <option value="darkgoldenrod"></option>
+            <option value="darkgray"></option>
+            <option value="darkgreen"></option>
+            <option value="darkkhaki"></option>
+            <option value="darkmagenta"></option>
+            <option value="darkolivegreen"></option>
+            <option value="darkorange"></option>
+            <option value="darkorchid"></option>
+            <option value="darkred"></option>
+            <option value="darksalmon"></option>
+            <option value="darkseagreen"></option>
+            <option value="darkslateblue"></option>
+            <option value="darkslategray"></option>
+            <option value="darkturquoise"></option>
+            <option value="darkviolet"></option>
+            <option value="deeppink"></option>
+            <option value="deepskyblue"></option>
+            <option value="dimgray"></option>
+            <option value="dodgerblue"></option>
+            <option value="firebrick"></option>
+            <option value="floralwhite"></option>
+            <option value="forestgreen"></option>
+            <option value="fuchsia"></option>
+            <option value="gainsboro"></option>
+            <option value="ghostwhite"></option>
+            <option value="gold"></option>
+            <option value="goldenrod"></option>
+            <option value="gray"></option>
+            <option value="green"></option>
+            <option value="greenyellow"></option>
+            <option value="honeydew"></option>
+            <option value="hotpink"></option>
+            <option value="indianred"></option>
+            <option value="indigo"></option>
+            <option value="ivory"></option>
+            <option value="khaki"></option>
+            <option value="lavender"></option>
+            <option value="lavenderblush"></option>
+            <option value="lawngreen"></option>
+            <option value="lemonchiffon"></option>
+            <option value="lightblue"></option>
+            <option value="lightcoral"></option>
+            <option value="lightcyan"></option>
+            <option value="lightgoldenrodyellow"></option>
+            <option value="lightgray"></option>
+            <option value="lightgreen"></option>
+            <option value="lightpink"></option>
+            <option value="lightsalmon"></option>
+            <option value="lightseagreen"></option>
+            <option value="lightskyblue"></option>
+            <option value="lightslategray"></option>
+            <option value="lightsteelblue"></option>
+            <option value="lightyellow"></option>
+            <option value="lime"></option>
+            <option value="limegreen"></option>
+            <option value="linen"></option>
+            <option value="magenta"></option>
+            <option value="maroon"></option>
+            <option value="mediumaquamarine"></option>
+            <option value="mediumblue"></option>
+            <option value="mediumorchid"></option>
+            <option value="mediumpurple"></option>
+            <option value="mediumseagreen"></option>
+            <option value="mediumslateblue"></option>
+            <option value="mediumspringgreen"></option>
+            <option value="mediumturquoise"></option>
+            <option value="mediumvioletred"></option>
+            <option value="midnightblue"></option>
+            <option value="mintcream"></option>
+            <option value="mistyrose"></option>
+            <option value="moccasin"></option>
+            <option value="navajowhite"></option>
+            <option value="navy"></option>
+            <option value="oldlace"></option>
+            <option value="olive"></option>
+            <option value="olivedrab"></option>
+            <option value="orange"></option>
+            <option value="orangered"></option>
+            <option value="orchid"></option>
+            <option value="palegoldenrod"></option>
+            <option value="palegreen"></option>
+            <option value="paleturquoise"></option>
+            <option value="palevioletred"></option>
+            <option value="papayawhip"></option>
+            <option value="peachpuff"></option>
+            <option value="peru"></option>
+            <option value="pink"></option>
+            <option value="plum"></option>
+            <option value="powderblue"></option>
+            <option value="purple"></option>
+            <option value="red"></option>
+            <option value="rosybrown"></option>
+            <option value="royalblue"></option>
+            <option value="saddlebrown"></option>
+            <option value="salmon"></option>
+            <option value="sandybrown"></option>
+            <option value="seagreen"></option>
+            <option value="seashell"></option>
+            <option value="sienna"></option>
+            <option value="silver"></option>
+            <option value="skyblue"></option>
+            <option value="slateblue"></option>
+            <option value="slategray"></option>
+            <option value="snow"></option>
+            <option value="springgreen"></option>
+            <option value="steelblue"></option>
+            <option value="tan"></option>
+            <option value="teal"></option>
+            <option value="thistle"></option>
+            <option value="tomato"></option>
+            <option value="turquoise"></option>
+            <option value="violet"></option>
+            <option value="wheat"></option>
+            <option value="white"></option>
+            <option value="whitesmoke"></option>
+            <option value="yellow"></option>
+            <option value="yellowgreen"></option>
+          </datalist>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
