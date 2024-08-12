@@ -38,7 +38,6 @@ async function connectToDB() {
 
 app.get('/', async (req, res) => {
   try {
-    console.log(coll);
     colours = await coll.find({}).sort({ votes: -1 }).toArray();
     res.render('index.ejs', { colours });
   } catch (error) {
@@ -50,7 +49,7 @@ app.get('/', async (req, res) => {
 
 app.get('/api/colours/', async (req, res) => {
   try {
-    console.log('Request for all the colours');
+    console.log('All colours requested');
     // I want them in vote order
     colours = await coll.find({}).sort({ votes: 1 }).toArray();
     res.send({ colours });
