@@ -27,7 +27,7 @@ async function handleColourListClick(e) {
 }
 
 async function handleDelete(colour) {
-  const res = await fetch(`/api/${colour}`, { method: 'DELETE' });
+  const res = await fetch(`/colour/${colour}`, { method: 'DELETE' });
   if (res.ok) {
     setNotification(`Deleted ${colour}`, false);
     // Lower server load than EJS
@@ -40,7 +40,7 @@ async function handleDelete(colour) {
 }
 
 async function handleVote(colour, direction) {
-  const res = await fetch(`/api/${colour}/${direction}`, {
+  const res = await fetch(`/colour/${colour}/${direction}`, {
     method: 'PUT',
   });
   if (res.ok) {
@@ -207,7 +207,7 @@ async function handleSubmit(e) {
   ];
 
   if (validColors.includes(colour)) {
-    const res = await fetch('/api/', {
+    const res = await fetch('/colour/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -254,7 +254,7 @@ function setNotification(msg, error = true) {
 
 async function render() {
   console.log('Rendering page');
-  const res = await fetch('/api');
+  const res = await fetch('/colour');
   const data = await res.json();
   const { colours } = data;
   const colourList = document.querySelector('.colourList');

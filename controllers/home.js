@@ -1,11 +1,8 @@
-// Import model
 const { Colour } = require('../models/Colour');
 
 async function getIndex(req, res) {
   try {
-    console.log(Colour);
-    const colours = await Colour.find();
-    console.log(colours);
+    const colours = await Colour.find().sort({ votes: -1 });
     res.render('index.ejs', { colours });
   } catch (error) {
     console.error(`Failed to fetch homepage ${error}`);

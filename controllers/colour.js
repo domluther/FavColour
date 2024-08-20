@@ -1,19 +1,18 @@
-const express = require('express');
-const router = express.Router();
+const { Colour } = require('../models/Colour');
 
-router.get('/', async (req, res) => {
+async function getColours(req, res) {
   try {
     console.log('All colours requested');
     // I want them in vote order
-    colours = await coll.find({}).sort({ votes: 1 }).toArray();
+    colours = await Colour.find({}).sort({ votes: 1 });
     res.send({ colours });
   } catch (error) {
     console.error(`Failed to fetch colours ${error}`);
     res.status(500).send({ error: 'Failed to fetch colours' });
   }
-});
+}
 
-router.post('/', async (req, res) => {
+async function addColour(req, res) {
   try {
     // Read in new colour
     const colour = req.body.colour;
@@ -26,7 +25,7 @@ router.post('/', async (req, res) => {
       return res.status(400).send({ error: 'Malformed body' });
     }
     //   Is it already in the DB?
-    const existingColour = await coll.findOne({ name: colour });
+    const existingColour = await Colour.findOne({ name: colour });
     if (existingColour) {
       return res.status(400).send({ error: 'Duplicate colour' });
     }
@@ -39,21 +38,21 @@ router.post('/', async (req, res) => {
     };
 
     console.log(`Submitting ${JSON.stringify(newColour)} to DB`);
-    await coll.insertOne(newColour);
+    await Colour.create(newColour);
     // Re-render page?
     res.send({ message: 'success' });
   } catch (error) {
     console.error(`Failed to add colour ${error}`);
     res.status(500).send({ error: 'Failed to add colour' });
   }
-});
+}
 
-router.put('/:colour/:direction', async (req, res) => {
+async function voteColour(req, res) {
   try {
     const colour = req.params.colour;
     const change = req.params.direction === 'up' ? 1 : -1;
     // Increment vote count
-    const dbRes = await coll.updateOne({ name: colour }, [
+    const dbRes = await Colour.updateOne({ name: colour }, [
       {
         $set: {
           votes: {
@@ -71,14 +70,14 @@ router.put('/:colour/:direction', async (req, res) => {
     console.error(`Failed to update colour ${error}`);
     res.status(500).send({ error: 'Failed to update colour' });
   }
-});
+}
 
-router.delete('/:colour', async (req, res) => {
+async function removeColour(req, res) {
   try {
     const colour = req.params.colour;
 
     //   Send request to delete
-    const dbRes = await coll.deleteOne({ name: colour });
+    const dbRes = await Colour.deleteOne({ name: colour });
 
     // Respond based on code - deleted v not
     if (dbRes.deletedCount === 0) {
@@ -90,6 +89,6 @@ router.delete('/:colour', async (req, res) => {
     console.error(`Failed to delete colour ${error}`);
     res.status(500).send({ error: 'Failed to delete colour' });
   }
-});
+}
 
-module.exports = router;
+module.exports = { getColours, addColour, voteColour, removeColour };

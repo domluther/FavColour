@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5432;
 const { connectDB } = require('./config/db');
 
 const homeRouter = require('./routes/home');
-const colourRouter = require('./routes/api');
+const colourRouter = require('./routes/colour');
 
 app.use(express.static('public'));
 app.use(express.json());
