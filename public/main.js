@@ -1,3 +1,5 @@
+'use strict';
+
 const submitBtn = document.querySelector('#colourForm button');
 const colourList = document.querySelector('.colourList');
 
@@ -238,7 +240,7 @@ async function handleSubmit(e) {
 }
 
 function setNotification(msg, error = true) {
-  notificationEle = document.querySelector('.notification');
+  const notificationEle = document.querySelector('.notification');
   notificationEle.classList.remove('hidden');
   notificationEle.innerText = msg;
   if (error) {

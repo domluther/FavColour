@@ -1,6 +1,6 @@
-const { Colour } = require('../models/Colour');
+import Colour from '../models/Colour.js';
 
-async function getIndex(req, res) {
+export async function getIndex(req, res) {
   try {
     const colours = await Colour.find().sort({ votes: -1 });
     res.render('index.ejs', { colours });
@@ -9,5 +9,3 @@ async function getIndex(req, res) {
     res.status(500).send({ error: 'Failed to fetch homepage' });
   }
 }
-
-module.exports = { getIndex };

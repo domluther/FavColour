@@ -1,18 +1,16 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-// TODO Model last - most to refactor
-const { MongoClient } = require('mongodb');
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
 
-app = express();
+const app = express();
 app.use(morgan('tiny'));
 
 const PORT = process.env.PORT || 5432;
 
-const { connectDB } = require('./config/db');
+import connectDB from './config/db.js';
 
-const homeRouter = require('./routes/home');
-const colourRouter = require('./routes/colour');
+import rootRouter from './routes/index.js';
+import colourRouter from './routes/colour.js';
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -22,7 +20,7 @@ app.set('view engine', 'ejs');
 
 connectDB();
 
-app.use('/', homeRouter);
+app.use('/', rootRouter);
 app.use('/colour/', colourRouter);
 
 app.listen(PORT, (req, res) => {

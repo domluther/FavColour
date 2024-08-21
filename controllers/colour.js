@@ -1,10 +1,10 @@
-const { Colour } = require('../models/Colour');
+import Colour from '../models/Colour.js';
 
-async function getColours(req, res) {
+export async function getColours(req, res) {
   try {
     console.log('All colours requested');
     // I want them in vote order
-    colours = await Colour.find({}).sort({ votes: 1 });
+    const colours = await Colour.find({}).sort({ votes: 1 });
     res.send({ colours });
   } catch (error) {
     console.error(`Failed to fetch colours ${error}`);
@@ -12,7 +12,7 @@ async function getColours(req, res) {
   }
 }
 
-async function addColour(req, res) {
+export async function addColour(req, res) {
   try {
     // Read in new colour
     const colour = req.body.colour;
@@ -47,7 +47,7 @@ async function addColour(req, res) {
   }
 }
 
-async function voteColour(req, res) {
+export async function voteColour(req, res) {
   try {
     const colour = req.params.colour;
     const change = req.params.direction === 'up' ? 1 : -1;
@@ -72,7 +72,7 @@ async function voteColour(req, res) {
   }
 }
 
-async function removeColour(req, res) {
+export async function removeColour(req, res) {
   try {
     const colour = req.params.colour;
 
@@ -90,5 +90,3 @@ async function removeColour(req, res) {
     res.status(500).send({ error: 'Failed to delete colour' });
   }
 }
-
-module.exports = { getColours, addColour, voteColour, removeColour };

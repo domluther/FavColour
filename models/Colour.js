@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const collName = 'colours';
 
@@ -15,4 +15,4 @@ const colourSchema = new mongoose.Schema({
 
 const Colour = mongoose.model(collName, colourSchema);
 
-module.exports = { Colour };
+export default Colour;

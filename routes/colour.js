@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const colourController = require('../controllers/colour');
+import * as colourController from '../controllers/colour.js';
 
 router.get('/', colourController.getColours);
 
@@ -10,4 +10,4 @@ router.put('/:colour/:direction', colourController.voteColour);
 
 router.delete('/:colour', colourController.removeColour);
 
-module.exports = router;
+export default router;
